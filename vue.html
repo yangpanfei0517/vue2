@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识Vue.js</title>
+</head>
+<body>
+    <div id="app">
+        <fieldset>
+            <legend>Create New Person</legend>
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" v-model="person.name"/>
+            </div>
+            <div class="form-group">
+                <label>Age:</label>
+                <input type="text" v-model="person.age" />
+            </div>
+            <div class="form-group">
+                <label>Sex:</label>
+                <select v-model="person.sex">
+                    <option value="Male">Male</option>
+                    <option vlaue="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label></label>
+                <input type="button" value="Create" @click="createPerson"/>
+            </div>
+        </fieldset>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Sex</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(one,index) in people"> <!--vue2 removed $index,$key-->
+                    <td>{{one.name}}</td>
+                    <td>{{one.age}}</td>
+                    <td>{{one.sex}}</td>
+                    <td><input type="button" value="Delete" @click="deletePerson(index)"/></td><!--使用@简化v-on:,使用：简化v-bind:-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="../lib/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            people:[{name:'yangpanfei',age:"25",sex:'Female'}],
+            person:{name:'',age:0,sex:'Male'}
+        },
+        //在methods中定义方法
+        methods:{
+            deletePerson:function(index){
+                debugger;;
+                //这里的this指向vm
+                this.people.splice(index,1);
+            },
+            createPerson:function(){
+                this.people.push(this.person);
+                this.person = {name:'',age:0,sex:'Male'}
+            }
+        }
+    })
+</script>
+</html>
