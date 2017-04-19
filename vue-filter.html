@@ -21,6 +21,8 @@
 			}
 		}
 	 })
+	 //过滤器可以串联：{{ message | filterA | filterB }}
+	 //过滤器是 JavaScript 函数，因此可以接受参数：{{ message | filterA('arg1', arg2) }}这里，字符串 'arg1' 将传给过滤器作为第二个参数， arg2 表达式的值将被求值然后传给过滤器作为第三个参数。
   </script>
 </body>
 </html>
