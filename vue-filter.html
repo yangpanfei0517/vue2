@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过滤器</title>
+</head>
+<body>
+  <div id="msg" v-bind:title="rawId | formatId">测试title{{rawId | formatId}}</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+  <script type="text/javascript">
+	 new Vue({
+		el:'#msg',
+		data:{
+			rawId:'b0002'
+		},
+		filters:{
+			formatId:function(value){
+				if(!value) return "";
+				value = value.toString();
+				return value.charAt(0).toUpperCase() + value.slice(1)
+			}
+		}
+	 })
+  </script>
+</body>
+</html>
