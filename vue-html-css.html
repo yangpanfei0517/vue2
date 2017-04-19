@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定HTML Class</title>
+</head>
+<body>
+  <div id="example" v-bind:class="classObject"><!--绑定内联样式v-bind:style="{}|[]"相似-->
+	<my-component class="baz boo"></my-component>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+  <script type="text/javascript">
+	//我们也可以在这里绑定返回对象的计算属性。这是一个常用且强大的模式：1.对象语法
+	//当你在一个定制的组件上用到class属性的时候，这些类将被添加到根元素上面，这个元素上已经存在的类不会被覆盖。组件定义必须写在实例化new Vue之前
+	Vue.component('my-component',{
+		template:'<p class="foo bar">Hi</p>',
+	 })
+	 var example = new Vue({
+		el:'#example',
+		data:{
+			isActive:true,
+			error:null
+		},
+		computed:{
+			classObject:function(){
+				return {
+					active:this.isActive && !this.error ,
+					'text-danger':this.error && this.error.type === 'fatal'
+				}
+			}
+		}
+	 })
+	//2.数组语法
+	//<div v-bind:class="[{ active: isActive }, errorClass]">	 
+  </script>
+</body>
+</html>
