@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>复选框</title>
+</head>
+<body>
+  <div id="app-7">
+    <input type="checkbox" id="Jack" value="Jack" v-model="checkedNames">
+	<label for="Jack">Jack</label>
+	<input type="checkbox" id="John" value="John" v-model="checkedNames">
+	<label for="John">John</label>
+	<input type="checkbox" id="Mike" value="Mike" v-model="checkedNames">
+	<label for="Mike">Mike</label><br>
+	<span>Checked Names:{{checkedNames}}</span>
+	<input type="checkbox" id="checkbox" v-model="checked">
+	<label for="checkbox"></label>{{checked}}
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+  <script type="text/javascript">
+    var app7 = new Vue({
+      el:'#app-7',
+      data:{
+        checkedNames:[],
+		checked:false
+      }
+    })
+  </script>
+</body>
+</html>
