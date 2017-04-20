@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+<body>
+  <div id='l3'>
+	<span v-for="n in 10">{{ n }}</span><br> <!--迭代整数12345678910-->
+	<!--迭代数组-->
+	<ul v-for="(item,index) in arr">
+		<li>{{index}}:{{item}}</li>
+	</ul>
+	<ul v-for="(item,key,index) of obj"><!--可以使用of代替分隔符in-->
+		<li>{{index}}.{{key}}:{{item}}</li>
+	</ul>
+	<ul v-for="(item,index) in items"><!--在 v-for 块中，我们拥有对父作用域属性的完全访问权限。-->
+		<li>{{parentMessage}}-{{index}}-{{item}}</li>
+	</ul>
+  </div>
+  <script type="text/javascript">
+	var l3 = new Vue({
+		el:'#l3',
+		data:{
+			parentMessage:'Parent',
+			arr:['yang','pan','fei'],
+			obj:{firstname:'yang',lastname:'panfei'},
+			items:[{message:'Foo'},{message:'Bar'}]
+		}
+	})
+  </script>
+</body>
+</html>
