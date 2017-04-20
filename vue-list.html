@@ -9,7 +9,7 @@
   <div id='l3'>
 	<span v-for="n in 10">{{ n }}</span><br> <!--迭代整数12345678910-->
 	<!--迭代数组-->
-	<ul v-for="(item,index) in arr">
+	<ul v-for="(item,index) in arr" v-bind:key="index"><!--建议尽可能使用 v-for 来提供 key ，除非迭代 DOM 内容足够简单，或者你是故意要依赖于默认行为来获得性能提升。key相当于track by=$index-->
 		<li>{{index}}:{{item}}</li>
 	</ul>
 	<ul v-for="(item,key,index) of obj"><!--可以使用of代替分隔符in-->
