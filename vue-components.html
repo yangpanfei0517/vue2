@@ -9,9 +9,11 @@
     <ol>
       <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
     </ol>
+	<my-component></my-component>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
   <script type="text/javascript">
+  //全局注册组件对于自定义标签名，Vue.js不强制要求遵循W3C规则（小写，并且包含一个短杠），尽管遵循这个规则比较好。
     Vue.component('todo-item',{
       props:['todo'],
       template:'<li>{{ todo.text }}</li>'
@@ -23,7 +25,12 @@
           { text:'蔬菜' },
           { text:'奶酪'},
           { text:'水果'}]
-      }
+      },
+	  components:{
+		'my-component':{ //带分隔符的变量名记得加引号
+			template:"<p>我是局部组件</p>"
+		}
+	  }
     })
   </script>
 </body>
