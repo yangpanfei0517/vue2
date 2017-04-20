@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下拉框</title>
+</head>
+<body>
+  <div id="app-7">
+    <select v-model="selected">
+		<option value="apple">苹果</option>
+		<option value="banana">香蕉</option>
+		<option value="watermelon">西瓜</option>
+		<option value="strawberry">草莓</option>
+	</select>
+	<span>今天我想吃：{{selected}}</span>
+	<select v-model="selected">
+		<option v-for="item in options" v-bind:value='item.name'>{{item.value}}</option><!--数组形式-->
+		<!--<option v-for="(item,key) in options" v-bind:value='key'>{{item}}</option>--><!--对象形式-->
+	</select>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+  <script type="text/javascript">
+    var app7 = new Vue({
+      el:'#app-7',
+      data:{
+		selected:null,
+		options:[{name:'apple',value:'苹果'},
+			{name:'banana',value:'香蕉'},
+			{name:'watermelon',value:'西瓜'},
+			{name:'strawberry',value:'草莓'}
+		]
+      }
+    })
+  </script>
+</body>
+</html>
