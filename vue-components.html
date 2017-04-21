@@ -7,7 +7,7 @@
 <body>
   <div id="app-7">
     <ol>
-      <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+      <li is="todo-item" v-for="item in groceryList" v-bind:my-message="item"></li><!--变通的方案是使用特殊的 is 属性-->
     </ol>
 	<my-component></my-component>
   </div>
@@ -15,8 +15,13 @@
   <script type="text/javascript">
   //全局注册组件对于自定义标签名，Vue.js不强制要求遵循W3C规则（小写，并且包含一个短杠），尽管遵循这个规则比较好。
     Vue.component('todo-item',{
-      props:['todo'],
-      template:'<li>{{ todo.text }}</li>'
+      props:['myMessage'], //当使用的不是字符串模版,(驼峰式命名)的 prop 需要转换为相对应的(短横线隔开式) 命名
+      template:'<li>{{ myMessage.text }}--{{message}}</li>',
+	  data:function (){
+		return {
+			message : '我必须是函数' //组件中的data必须是函数
+		}
+	  }
     })
     var app7 = new Vue({
       el:'#app-7',
