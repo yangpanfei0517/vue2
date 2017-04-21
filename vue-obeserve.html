@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>变化检测问题</title>
+</head>
+<body>
+  <div id="app-7">
+    <span>{{a}}</span><input type="text" v-model='a'>
+	<!--<span>{{b}}</span><input type="text" v-model='b'>-->
+	<span>{{b.b1}}</span><input type="text" v-model='b.b1'>
+	<span>{{b.b2}}</span><input type="text" v-model='b.b2'>
+	<span>{{b.b3}}</span><input type="text" v-model='b.b3'>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+  <script type="text/javascript">
+  //由于 Vue 会在初始化实例时对属性执行 getter/setter 转化过程，所以属性必须在 data 对象上存在才能让 Vue 转换它，这样才能让它是响应的。
+    var vm = new Vue({
+      el:'#app-7',
+      data:{
+		a:1,
+		b:{}
+      }
+    });
+	//'vm.a'是响应的，必须在初始化实例前声明根级响应式属性，哪怕只是一个空值
+	vm.a = 2;
+	//vm.b = 1; 报错因为'vm.b'是非响应的,Vue 不允许在已经创建的实例上动态添加新的根级响应式属性
+	//可以使用Vue.set(object,key,value)或者vm.$set(object,key,value)方法将单个响应属性添加到嵌套的对象上
+	vm.$set(vm.b,'b1',1)	//有时你想向已有对象上添加一个或者多个属性，例如使用(拷贝)Object.assign(target,...sources)或_.extend()方法来添加属性。但是，添加到对象上的新属性不会触发更新。在这种情况下可以创建一个新的对象，让它包含原对象的属性和新的属性
+	vm.b = Object.assign({},vm.b,{b2:2,b3:3})
+  </script>
+</body>
+</html>
